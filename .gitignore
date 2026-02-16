@@ -4,6 +4,10 @@
 tmux/plugins/tpm
 tmux/plugins/tmux-resurrect
 tmux/plugins/tmux-now-playing
+tmux/plugins/bmux
+
+# bmux config (managed in its own repo)
+bmux/
 
 # Lazygit state file
 lazygit/state.yml
