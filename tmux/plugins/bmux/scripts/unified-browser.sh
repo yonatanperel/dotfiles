@@ -69,8 +69,8 @@ while true; do
     meta="${selected%%	*}"
     IFS='|' read -r type field1 field2 field3 field4 field5 <<< "$meta"
 
-    if [ "$type" = "claude" ]; then
-        # Format: claude|pane_id|window_id|session_name|state
+    if [ "$type" = "bot" ]; then
+        # Format: bot|pane_id|window_id|session_name|state
         PANE_ID="$field1"
         WINDOW_ID="$field2"
         SESSION_NAME="$field3"

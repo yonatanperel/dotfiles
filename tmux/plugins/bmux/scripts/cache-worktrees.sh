@@ -1,6 +1,6 @@
 #!/bin/bash
-WORKTREE_CACHE="/tmp/cmux-worktree-cache"
-LOCK="/tmp/cmux-worktree-cache.lock"
+WORKTREE_CACHE="/tmp/bmux-worktree-cache"
+LOCK="/tmp/bmux-worktree-cache.lock"
 
 if ! mkdir "$LOCK" 2>/dev/null; then exit 0; fi
 trap "rmdir '$LOCK'" EXIT

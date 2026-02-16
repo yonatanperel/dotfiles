@@ -57,7 +57,7 @@ setup_session() {
         win_idx=$((win_idx + 1))
     done < <(bash "$script_dir/parse-config.sh" windows "$main_repo_dir")
 
-    # Phase 2: Create and start agent window
+    # Phase 2: Create and start bot window
     local bot_name=$'\U000f06a9'
     if [ "$win_idx" -eq 1 ]; then
         tmux rename-window -t "$session_name:1" "$bot_name"

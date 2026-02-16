@@ -3,7 +3,7 @@
 mode="$1"
 project_path="$2"
 
-CONFIG_FILE="${CMUX_CONFIG:-$HOME/.config/cmux/cmux.yaml}"
+CONFIG_FILE="${BMUX_CONFIG:-$HOME/.config/bmux/bmux.yaml}"
 
 if [ ! -f "$CONFIG_FILE" ]; then
     exit 0

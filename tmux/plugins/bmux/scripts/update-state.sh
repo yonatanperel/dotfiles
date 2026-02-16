@@ -2,7 +2,7 @@
 SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
 source "$SCRIPT_DIR/icons.sh"
 HOOK_TYPE="${1:-unknown}"
-STATE_DIR="/tmp/claude-agents"
+STATE_DIR="/tmp/bmux-bots"
 
 mkdir -p "$STATE_DIR"
 
@@ -52,7 +52,7 @@ set_attention() {
     echo "attention" > "$STATE_FILE"
     update_window_name "$PANE_ID" "attention"
     if ! terminal_is_focused "$frontmost"; then
-        notify_macos "🤖 ${pane_title}" "[${session_name}] needs attention" "cmux-${PANE_ID}"
+        notify_macos "🤖 ${pane_title}" "[${session_name}] needs attention" "bmux-${PANE_ID}"
     fi
     local pane_focused=$(tmux list-panes -a -F '#{pane_active}#{window_active}#{session_attached} #{pane_id}' 2>/dev/null | grep -q "^111 ${PANE_ID}$" && echo 1)
     if [ "$pane_focused" != "1" ]; then
@@ -71,7 +71,7 @@ if [ "$HOOK_TYPE" = "dismiss" ]; then
         SESSION_NAME=$(tmux display-message -p '#{session_name}' 2>/dev/null)
         if [ "$CURRENT" = "attention" ]; then
             echo "idle" > "$STATE_FILE"
-            dismiss_notification "cmux-${PANE_ID}"
+            dismiss_notification "bmux-${PANE_ID}"
             update_window_name "$PANE_ID" "idle"
             tmux display-message -d 2000 "${ICON_IDLE} ${BASE} ${PANE_TITLE} [${SESSION_NAME}]"
         elif [ "$CURRENT" = "idle" ]; then
@@ -105,7 +105,7 @@ case "$HOOK_TYPE" in
         ;;
     prompt_submit|running)
         echo "running" > "$STATE_FILE"
-        dismiss_notification "cmux-${PANE_ID}"
+        dismiss_notification "bmux-${PANE_ID}"
         update_window_name "$PANE_ID" "running"
         ;;
     stop)
@@ -123,7 +123,7 @@ case "$HOOK_TYPE" in
         base=$(base_window_name "$PANE_ID")
         [ -n "$base" ] && tmux rename-window -t "$PANE_ID" "$base" 2>/dev/null
         rm -f "$STATE_FILE" "$STATE_DIR/${PANE_ID}.name"
-        dismiss_notification "cmux-${PANE_ID}"
+        dismiss_notification "bmux-${PANE_ID}"
         tmux refresh-client -S &
         ;;
     notification)

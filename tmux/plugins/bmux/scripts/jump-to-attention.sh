@@ -1,12 +1,12 @@
 #!/bin/bash
 SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
 source "$SCRIPT_DIR/icons.sh"
-STATE_FILE="/tmp/claude-agents-state.tsv"
+STATE_FILE="/tmp/bmux-bots-state.tsv"
 
 bash "$SCRIPT_DIR/scan-sessions.sh"
 
 if [ ! -f "$STATE_FILE" ] || [ ! -s "$STATE_FILE" ]; then
-    tmux display-message -d 2000 "${ICON_NONE} No Claude sessions found"
+    tmux display-message -d 2000 "${ICON_NONE} No bot sessions found"
     exit 0
 fi
 
@@ -33,6 +33,6 @@ fi
 tmux switch-client -t "$SESSION_NAME"
 tmux select-window -t "$WINDOW_ID"
 tmux select-pane -t "$PANE_ID"
-BASE=$(cat "/tmp/claude-agents/${PANE_ID}.name" 2>/dev/null)
+BASE=$(cat "/tmp/bmux-bots/${PANE_ID}.name" 2>/dev/null)
 CLEAN_TITLE=$(echo "$PANE_TITLE" | sed 's/^[^[:alnum:]]* *//')
 tmux display-message -d 2000 "${ICON_JUMP} ${ICON_ATTENTION} ${BASE} ${CLEAN_TITLE} [${SESSION_NAME}]"

@@ -1,7 +1,7 @@
 #!/bin/bash
 SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
 source "$SCRIPT_DIR/icons.sh"
-STATE_FILE="/tmp/claude-agents-state.tsv"
+STATE_FILE="/tmp/bmux-bots-state.tsv"
 
 if [ ! -f "$STATE_FILE" ] || [ ! -s "$STATE_FILE" ]; then
     exit 0

@@ -1,6 +1,6 @@
 #!/bin/bash
-STATE_FILE="/tmp/claude-agents-state.tsv"
-HOOK_STATE_DIR="/tmp/claude-agents"
+STATE_FILE="/tmp/bmux-bots-state.tsv"
+HOOK_STATE_DIR="/tmp/bmux-bots"
 
 PANES=$(tmux list-panes -a -F "#{session_name}|#{window_id}|#{window_name}|#{pane_id}|#{pane_title}|#{pane_current_path}" 2>/dev/null)
 

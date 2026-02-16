@@ -22,7 +22,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "bash ~/.config/tmux/plugins/cmux/scripts/update-state.sh session_start"
+            "command": "bash ~/.config/tmux/plugins/bmux/scripts/update-state.sh session_start"
           }
         ]
       }
@@ -32,7 +32,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "bash ~/.config/tmux/plugins/cmux/scripts/update-state.sh stop"
+            "command": "bash ~/.config/tmux/plugins/bmux/scripts/update-state.sh stop"
           }
         ]
       }
@@ -42,7 +42,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "bash ~/.config/tmux/plugins/cmux/scripts/update-state.sh notification"
+            "command": "bash ~/.config/tmux/plugins/bmux/scripts/update-state.sh notification"
           }
         ]
       }
@@ -52,7 +52,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "bash ~/.config/tmux/plugins/cmux/scripts/update-state.sh prompt_submit"
+            "command": "bash ~/.config/tmux/plugins/bmux/scripts/update-state.sh prompt_submit"
           }
         ]
       }
@@ -62,7 +62,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "bash ~/.config/tmux/plugins/cmux/scripts/update-state.sh running"
+            "command": "bash ~/.config/tmux/plugins/bmux/scripts/update-state.sh running"
           }
         ]
       }
@@ -72,7 +72,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "bash ~/.config/tmux/plugins/cmux/scripts/update-state.sh running"
+            "command": "bash ~/.config/tmux/plugins/bmux/scripts/update-state.sh running"
           }
         ]
       }
@@ -82,7 +82,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "bash ~/.config/tmux/plugins/cmux/scripts/update-state.sh exit"
+            "command": "bash ~/.config/tmux/plugins/bmux/scripts/update-state.sh exit"
           }
         ]
       }

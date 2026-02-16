@@ -15,13 +15,13 @@ for arg in "${@:2}"; do
     esac
 done
 
-CLAUDE_STATE_FILE="/tmp/claude-agents-state.tsv"
-WORKTREE_CACHE="/tmp/cmux-worktree-cache"
+BOT_STATE_FILE="/tmp/bmux-bots-state.tsv"
+WORKTREE_CACHE="/tmp/bmux-worktree-cache"
 
-# --- Claude entries (from TSV state file maintained every 2s) ---
-CLAUDE_ENTRIES=""
+# --- Bot entries (from TSV state file maintained every 2s) ---
+BOT_ENTRIES=""
 declare -A session_priority
-if [ -f "$CLAUDE_STATE_FILE" ] && [ -s "$CLAUDE_STATE_FILE" ]; then
+if [ -f "$BOT_STATE_FILE" ] && [ -s "$BOT_STATE_FILE" ]; then
     shopt -s extglob
     NOW=$EPOCHSECONDS
     E=$'\033'
@@ -36,18 +36,18 @@ if [ -f "$CLAUDE_STATE_FILE" ] && [ -s "$CLAUDE_STATE_FILE" ]; then
         pane="${pane_title##+([^a-zA-Z0-9])}"
         [ ${#pane} -gt 40 ] && pane="${pane:0:37}..."
 
-        bot=$(cat "/tmp/claude-agents/${pane_id}.name" 2>/dev/null)
+        bot=$(cat "/tmp/bmux-bots/${pane_id}.name" 2>/dev/null)
         [ -z "$bot" ] && bot="$window_name"
 
         local_pri=3
         case "$state" in
-            attention) CLAUDE_ENTRIES+="claude|${pane_id}|${window_id}|${session_name}|attention"$'\t'"    ${E}[33m${ICON_ATTENTION}${E}[0m ${bot} ${pane} ${E}[90m${ago}${E}[0m"$'\n'; local_pri=0 ;;
-            idle)      CLAUDE_ENTRIES+="claude|${pane_id}|${window_id}|${session_name}|idle"$'\t'"    ${E}[32m${ICON_IDLE}${E}[0m ${E}[90m${bot} ${pane} ${ago}${E}[0m"$'\n'; local_pri=2 ;;
-            *)         CLAUDE_ENTRIES+="claude|${pane_id}|${window_id}|${session_name}|running"$'\t'"    ${E}[36m${ICON_RUNNING}${E}[0m ${bot} ${pane} ${E}[90m${ago}${E}[0m"$'\n'; local_pri=1 ;;
+            attention) BOT_ENTRIES+="bot|${pane_id}|${window_id}|${session_name}|attention"$'\t'"    ${E}[33m${ICON_ATTENTION}${E}[0m ${bot} ${pane} ${E}[90m${ago}${E}[0m"$'\n'; local_pri=0 ;;
+            idle)      BOT_ENTRIES+="bot|${pane_id}|${window_id}|${session_name}|idle"$'\t'"    ${E}[32m${ICON_IDLE}${E}[0m ${E}[90m${bot} ${pane} ${ago}${E}[0m"$'\n'; local_pri=2 ;;
+            *)         BOT_ENTRIES+="bot|${pane_id}|${window_id}|${session_name}|running"$'\t'"    ${E}[36m${ICON_RUNNING}${E}[0m ${bot} ${pane} ${E}[90m${ago}${E}[0m"$'\n'; local_pri=1 ;;
         esac
         cur_pri="${session_priority[$session_name]:-3}"
         [ "$local_pri" -lt "$cur_pri" ] && session_priority[$session_name]="$local_pri"
-    done < "$CLAUDE_STATE_FILE"
+    done < "$BOT_STATE_FILE"
 fi
 
 # --- Worktree data (from cache or computed on-the-fly) ---
@@ -158,11 +158,11 @@ if [ -n "$current_session" ]; then
     done <<< "$sessions"
 fi
 
-get_claude_instances() {
+get_bot_instances() {
     local session_name="$1"
     local ctx_repo="$2"
     local ctx_wt="$3"
-    [ -z "$CLAUDE_ENTRIES" ] && return
+    [ -z "$BOT_ENTRIES" ] && return
     local line
     while IFS= read -r line; do
         [ -z "$line" ] && continue
@@ -172,7 +172,7 @@ get_claude_instances() {
         else
             printf '%s\n' "$line"
         fi
-    done <<< "$CLAUDE_ENTRIES"
+    done <<< "$BOT_ENTRIES"
 }
 
 output_repo() {
@@ -188,10 +188,10 @@ output_repo() {
                 [ "$root" = "$repo" ] && wt_name="main"
                 if [ "$search_mode" = "true" ]; then
                     printf 'worktree|%s|%s|active|%s\t  \033[32m●\033[0m %s (\033[33m%s\033[0m) \033[34m· %s\033[0m\n' "$root" "$sess" "$repo" "$wt_name" "$sess" "$repo_name"
-                    get_claude_instances "$sess" "$repo_name" "$wt_name"
+                    get_bot_instances "$sess" "$repo_name" "$wt_name"
                 else
                     printf 'worktree|%s|%s|active|%s\t  \033[32m●\033[0m %s (\033[33m%s\033[0m)\n' "$root" "$sess" "$repo" "$wt_name" "$sess"
-                    get_claude_instances "$sess"
+                    get_bot_instances "$sess"
                 fi
                 break
             fi
@@ -214,10 +214,10 @@ output_repo() {
         [ "$root" = "$repo" ] && wt_name="main"
         if [ "$search_mode" = "true" ]; then
             printf 'worktree|%s|%s|active|%s\t  \033[32m●\033[0m %s (\033[33m%s\033[0m) \033[34m· %s\033[0m\n' "$root" "$sess" "$repo" "$wt_name" "$sess" "$repo_name"
-            get_claude_instances "$sess" "$repo_name" "$wt_name"
+            get_bot_instances "$sess" "$repo_name" "$wt_name"
         else
             printf 'worktree|%s|%s|active|%s\t  \033[32m●\033[0m %s (\033[33m%s\033[0m)\n' "$root" "$sess" "$repo" "$wt_name" "$sess"
-            get_claude_instances "$sess"
+            get_bot_instances "$sess"
         fi
     done <<< "$sorted_sessions"
 
