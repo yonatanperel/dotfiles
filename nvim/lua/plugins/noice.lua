@@ -3,7 +3,7 @@ return {
     event = "VeryLazy",
     opts = {
         presets = {
-            lsp_doc_border = true,
+            lsp_doc_border = false,
         },
     },
     dependencies = {

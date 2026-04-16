@@ -13,7 +13,13 @@ return {
     },
   },
   on_attach = function(client, bufnr)
-    -- Disable semantic tokens so Treesitter handles highlights
     client.server_capabilities.semanticTokensProvider = nil
+    vim.keymap.set("n", "<leader>i", function()
+      vim.lsp.buf.format()
+      vim.cmd("write")
+      local filepath = vim.fn.expand("%:p")
+      vim.fn.system({ "golangci-lint", "run", "--fix", filepath })
+      vim.cmd("edit")
+    end, { buffer = bufnr, desc = "Format and lint fix (Go)" })
   end,
 }

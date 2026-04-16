@@ -8,7 +8,7 @@ config.enable_tab_bar = false
 config.font = wezterm.font("IosevkaTerm Nerd Font")
 config.font_size = 14
 
-config.color_scheme = 'Lake Dweller'
+config.color_scheme = 'Ocean Dweller'
 config.line_height = 1.2
 
 local mux = wezterm.mux

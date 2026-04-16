@@ -1,5 +1,5 @@
 vim.g.mapleader = " "
-vim.g.maplocalleader = " "
+vim.g.maplocalleader = "\\"
 
 vim.opt.nu = true
 vim.opt.relativenumber = true
@@ -30,4 +30,3 @@ vim.opt.isfname:append("@-@")
 vim.opt.updatetime = 50
 
 vim.o.winborder = "single"
-vim.api.nvim_set_hl(0, "FloatBorder", { link = "Normal" })

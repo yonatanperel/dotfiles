@@ -80,7 +80,7 @@ outer.right =      0
 # All possible modifiers: cmd, alt, ctrl, shift
 
 # App based hotkeys
-alt-t = ['exec-and-forget open /Applications/WezTerm.app'] # Terminal
+alt-t = ['exec-and-forget open /Applications/Ghostty.app'] # Terminal
 alt-b = ['exec-and-forget open /Applications/Google\ Chrome.app' ] # Browser
 alt-s = ['exec-and-forget open /Applications/Slack.app'] # Slack
 alt-w = ['exec-and-forget open /Applications/WhatsApp.app'] # Whatsapp
@@ -164,7 +164,7 @@ shift-down = ['volume set 0', 'mode main']
 
 # Send app to workspace on when it launches.
 [[on-window-detected]]
-if.app-id = 'com.github.wez.wezterm'
+if.app-id = 'com.mitchellh.ghostty'
 run = 'move-node-to-workspace T'
 
 [[on-window-detected]]

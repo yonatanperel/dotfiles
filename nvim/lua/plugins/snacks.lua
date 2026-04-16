@@ -13,6 +13,10 @@ return {
   opts = {
     picker = {
       enabled = true,
+      sources = {
+        files = { hidden = true },
+        grep = { hidden = true },
+      },
       win = {
         input = {
           keys = {

@@ -13,7 +13,6 @@ source ~/.config/zsh/plugins/zsh-system-clipboard/zsh-system-clipboard.zsh
 # Pure prompt
 fpath+=("$(brew --prefix)/share/zsh/site-functions")
 autoload -U promptinit; promptinit
-zstyle :prompt:pure:path color yellow
 prompt pure
 
 # NVM

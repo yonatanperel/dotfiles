@@ -1,6 +1,6 @@
 return {
     {
-        dir = "~/Code/lake-dweller.nvim",
+        "yonatanperel/lake-dweller.nvim",
         lazy = false,
         priority = 1000,
         config = function()
@@ -8,7 +8,7 @@ return {
                 transparent = false,
                 italic_comments = true,
                 float_background = false,
-                variant = 'lake-dweller'
+                variant = "ocean-dweller",
             })
             vim.cmd.colorscheme("lake-dweller")
         end,
