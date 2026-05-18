@@ -6,11 +6,19 @@ return {
         config = function()
             require("lake-dweller").setup({
                 transparent = false,
-                italic_comments = true,
+                italics = false,
                 float_background = false,
-                variant = "ocean-dweller",
+                variant = "nay-dweller",
             })
             vim.cmd.colorscheme("lake-dweller")
+        end,
+    },
+    {
+        "rebelot/kanagawa.nvim",
+        lazy = false,
+        priority = 1000,
+        config = function()
+            --vim.cmd.colorscheme("kanagawa")
         end,
     },
     {
@@ -33,5 +41,14 @@ return {
             })
             --vim.cmd([[colorscheme everforest]])
         end,
+    },
+    {
+        'RostislavArts/naysayer.nvim',
+        priority = 1000,
+        lazy = false,
+        config = function()
+            --vim.cmd.colorscheme('naysayer')
+        end,
     }
+
 }
