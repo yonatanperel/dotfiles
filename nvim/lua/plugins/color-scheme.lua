@@ -8,7 +8,7 @@ return {
                 transparent = false,
                 italics = false,
                 float_background = false,
-                variant = "nay-dweller",
+                variant = "pond-dweller",
             })
             vim.cmd.colorscheme("lake-dweller")
         end,

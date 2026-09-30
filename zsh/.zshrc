@@ -49,3 +49,11 @@ export PATH="$HOME/.local/bin:$PATH"
 
 # Mise
 eval "$(mise activate zsh)"
+
+# pnpm
+export PNPM_HOME="/Users/yonatan.perel/Library/pnpm"
+case ":$PATH:" in
+  *":$PNPM_HOME/bin:"*) ;;
+  *) export PATH="$PNPM_HOME/bin:$PATH" ;;
+esac
+# pnpm end
