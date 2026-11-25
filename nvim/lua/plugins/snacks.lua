@@ -11,6 +11,7 @@ return {
     { "<leader>gg", function() Snacks.terminal.toggle("lazygit") end, desc = "Lazygit" },
   },
   opts = {
+    styles = { float = { border = "single" }, terminal = { border = "single" } },
     picker = {
       enabled = true,
       sources = {

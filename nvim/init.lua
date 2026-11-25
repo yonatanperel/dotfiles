@@ -18,4 +18,4 @@ require("config")
 require("set")
 require("lsp")
 
-require("lazy").setup("plugins")
+require("lazy").setup("plugins", { ui = { border = "single" } })

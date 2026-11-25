@@ -3,5 +3,6 @@ return {
   event = "VeryLazy",
   opts = {
     preset = "helix",
+    win = { border = "single" },
   },
 }

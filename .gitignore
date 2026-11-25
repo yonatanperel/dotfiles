@@ -21,3 +21,6 @@ zsh/work.zsh
 # lazysql config (untracked until creds generation is wired up)
 lazysql/
 
+
+# gh auth token
+gh/hosts.yml
